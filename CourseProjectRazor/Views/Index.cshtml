@@ -1,0 +1,68 @@
+﻿@page
+@model CourseProjectRazor.Controllers.IndexModel
+@namespace CourseProjectRazor.Views
+@{
+	ViewData["Title"] = "Главная страница";
+}
+<!Doctype html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="~/css/main.css" />
+	<title>Watch Time</title>
+</head>
+<body id="mainPage">
+	<header>
+		<div class="headerWrapper">
+			<h3><a href='@Url.Page("/About")'>О нас</a></h3>
+		</div>
+	</header>
+	<div id="animPreview">
+		<h1 style="margin-top: 25%" font-family="Avdira" ;
+			text-align="center" text-shadow 2px #44C0AA>
+			Watch time.
+		</h1>
+	</div>
+	<div class="cinemaPageWrapper">
+		<br>
+		<!-- Цикл добавляет фильмы из базы данных-->
+		@foreach (CourseProjectRazor.Models.Movies.Movie mv
+		   in Model.mainPModel.Movies)
+		{
+			<div class="cinemaContentWrapper">
+				<img src="~/Movies/Pic/@mv.ImgPath" width="186" height="266"
+					 style="border-style: groove" />
+				<div class="cinemaContent">
+					<p>
+						<a href='@Url.Page("/MovieDesc",
+							new { img=mv.ImgPath, id=mv.Id})'>
+							@mv.Name
+						</a>
+					</p>
+					<p>@mv.Tags</p>
+					<p>@mv.Date</p>
+					<p>@mv.Price ₽</p>
+				</div>
+			</div>
+			<br>
+		}
+	</div>
+	<footer>
+		<!--Обертка для текста основной информации-->
+		<div class="footerWrapper">
+			<div class="footerContentColumn">
+				Контакты:
+			</div>
+			<div class="footerContentColumn">
+				наш e-mail - watchTime@mail.ru
+			</div>
+			<div class="footerContentColumn">
+				наш телефон - 7(862)333-98-16
+			</div>
+		</div>
+		<div class="footCreator">
+			Сайт разработал: Талья Роман М8О-203Б-20
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿@page
+@model CourseProjectRazor.Controllers.AboutModel
+@namespace CourseProjectRazor.Views
+@{
+	ViewData["Title"] = "О Нас";
+}
+<!Doctype html>
+<html style="overflow-x: hidden">
+<head>
+	<meta charset="utf-8" />
+	<title>Watch Time: О нас</title>
+	<link rel="stylesheet" type="text/css" href="~/css/main.css" />
+</head>
+<body>
+	<header>
+		<div class="headerWrapper">
+			<h3><a href='@Url.Page("/Index")'>Главная страница</a></h3>
+		</div>
+	</header>
+	<div class="cinemaPageWrapper">
+		<p>
+			<h2 class="desc" style="margin-left: 30px; margin-right: 30px">
+				@Model.aboutP.aboutText
+			</h2>
+		</p>
+	</div>
+	<!--Обертка для текста основной информации-->
+	<footer>
+		<div class="footerWrapper">
+			<div class="footerContentColumn">
+				Контакты:
+			</div>
+			<div class="footerContentColumn">
+				наш e-mail - watchTime@mail.ru
+			</div>
+			<div class="footerContentColumn">
+				наш телефон - 7(862)333-98-16
+			</div>
+		</div>
+		<div class="footCreator">
+			Сайт разработал: Талья Роман М8О-203Б-20
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,98 @@
+﻿@page "{img}/{id}"
+@model CourseProjectRazor.Controllers.MovieDescModel
+@namespace CourseProjectRazor.Views
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+	var imgName = RouteData.Values["img"];
+}
+
+<!Doctype html>
+<html style="overflow-x: hidden">
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" type="text/css" href="~/css/main.css" />
+	<title>Watch Time: @Model.thisPage.mv.Name</title>
+</head>
+<body>
+	<header>
+		<div class="headerWrapper">
+			<h3 class="headContentColumn">
+				<a href='@Url.Page("/About")'>О нас</a>
+			</h3>
+			<h3 class="headContentColumn">
+				<a href='@Url.Page("/Index")'>Главная страница</a>
+			</h3>
+		</div>
+	</header>
+	<div class="cinemaPageWrapper">
+		<br>
+		<div class="cinemaContentWrapper">
+			<img src="~/Movies/Pic/@imgName" width="372" height="532"
+				 style="border-style: groove" />
+			<div class="cinemaContent">
+				<p>@Model.thisPage.mv.Name</p>
+				<p>@Model.thisPage.mv.Tags</p>
+				<p>@Model.thisPage.mv.Date</p>
+				<p>@Model.thisPage.mv.Price ₽</p>
+				<h1><b>Описание:</b></h1>
+				<h3 class="desc">
+					@{
+						int count = 0;
+						for (int i = 0; i < Model.thisPage.desc.Length;
+						count++, i++)
+						{
+							if (count > 80 &&
+							Model.thisPage.desc[i] == ' ')
+							{
+								{<br>};
+								count = 0;
+							}
+							{ @Model.thisPage.desc[i]};
+					}
+					}
+				</h3>
+				<br>
+				<h2>Оплата билета:</h2>
+				<form class="cinemaTicketForm" method="post"
+					  style="border-style: none; padding-bottom: 30px">
+					<div class="cinemaTicketColumn">
+						<label style="padding-left: 40px">
+							Выберите номер места:
+							<input type="number" name="seat"
+								   style="width: 100px; height: 30px;"
+								   required min="1" max="36" />
+						</label>
+						<img src="~/sitePic/cinemaLayout.png"
+							 width="250" height="200"
+							 style="border-style: solid; float: left" />
+						<br>
+						<div style="padding-top: 40px;
+							padding-left: 480px;">
+							<input class="cinemaFormButton"
+								   type="submit" value="Купить билет" />
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		<br>
+	</div>
+	<footer>
+		<!--Обертка для текста основной информации-->
+		<div class="footerWrapper">
+			<div class="footerContentColumn">
+				Контакты:
+			</div>
+			<div class="footerContentColumn">
+				наш e-mail - watchTime@mail.ru
+			</div>
+			<div class="footerContentColumn">
+				наш телефон - 7(862)333-98-16
+			</div>
+		</div>
+		<div class="footCreator">
+			Сайт разработал: Талья Роман М8О-203Б-20
+		</div>
+	</footer>
+</body>
+</html>
